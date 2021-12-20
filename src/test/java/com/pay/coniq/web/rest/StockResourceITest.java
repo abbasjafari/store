@@ -43,8 +43,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("dev")
 public class StockResourceITest {
 
-    private static final String DEFAULT_NAME = "p1";
-    private static final String UPDATED_NAME = "p2";
+    private static final String DEFAULT_NAME = "t1";
+    private static final String UPDATED_NAME = "t2";
 
     private static final BigDecimal DEFAULT_CURRENT_PRICE = new BigDecimal("12.5");
     private static final BigDecimal UPDATED_CURRENT_PRICE = new BigDecimal("5.12");
@@ -100,7 +100,7 @@ public class StockResourceITest {
      * if they test an entity which requires the current entity.
      */
 
-    public static Stock createEntity(EntityManager em) {
+    public static Stock createEntity() {
         Stock stock = new Stock()
                 .name(DEFAULT_NAME)
                 .currentPrice(DEFAULT_CURRENT_PRICE);
@@ -111,8 +111,7 @@ public class StockResourceITest {
 
     @BeforeEach
     public void initTest() {
-        stockRepository.deleteAll();
-        stock = createEntity(em);
+        stock = createEntity();
     }
 
     @Test
